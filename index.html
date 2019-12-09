@@ -10,33 +10,66 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="https://fonts.googleapis.com/css?family=Merriweather|Rock+Salt|Roboto&display=swap" rel="stylesheet">
+		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<script src="assets/js/scroll_navbar.js"></script>
+		
 	</head>
 	<body class="homepage">
 		<div id="page-wrapper">
-			<header class="nav1">
-				<ul>
-					<li><a href="index.html">Home</a></li>								
-					<li><a href="projects.html">Projects</a></li>
-					<li class="break"><a href="resume.html">Resume</a></li>
-					<li><a href="aboutMe.html">About Me</a></li>
-				</ul>	
+			<header class="nav1" id="navbar">
+				<nav>
+					<ul class="nav_links">
+						<li><a href="index.html">Home</a></li>
+						<li><a href="#aboutme">About Me</a></li>
+						<li><a href="#resume">Resume</a></li>
+						<li><a href="#contact">Contact</a></li>
+					</ul>
+				</nav>
+				<a class="links" href="p2.html">Projects</a>
+
 			</header>
 			<!-- Hero -->
 			<div class="hero">
 				<div class="hero-inner">
-					<h1>Chloe Feng</h1>
-					<h2>An unprofessional portfolio...</h2>
-					<a href="#myproject" class="button">Go ahead...</a>
-				<!-- <ul class="actions">
-						<img src="images/fuji.jpg" class="cover" alt="" /></a>
-					<li><a href="#" class="button">Get this party started</a></li>
-				</ul>-->
+					<h2 id="index">Chloe Feng</h2>
+					<h3>A lifetime learner</h3>
+					<a href="#aboutme" class="button">Go ahead...</a>
 				</div>
 			</div>
-
+			<!-- Features 2: more... -->
+			<div class="wrapper" id="aboutme">
+				<br><h1>About me...</h1>
+				<h2>Hi! Welcome to my website!</h2>
+				<article class="about">
+					<p>I'm a fourth year student studying in the University of Waterloo, expected to graduate in Winter 2020.</p>
+					<p>...</p>
+					<p>My skills: </p>
+					
+					 <ul>
+						<li>back-end: Python, C++, </li>
+						<li>font-end: HTML/CSS, JavaScript </li>
+						<li>Other:  </li>
+					 </ul>
+				</article>
+			</div>
+				
+			<div class="wrapper">
+				<h1 id="resume">My resume</h1>
+				<div class=container_a>
+					<div class="box_a">																<div class=icon_r>
+						<a href="warmsky.jpg" download="Resume.pdf">
+						<i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
+						
+					</div>
+				</div><br><br>
+			</div>
+		
 			<!-- Features 1: Projects-->
-			<div class="wrapper" id="myproject">
+			<div class="wrapper">
 				<h1>My Projects</h1><br>
+			</div>
+			<div class="wrapper_p" id="myproject">
 				<div class="wrapper1">
 					<div class="container">
 						<h2>Portfolio Website</h2>
@@ -61,47 +94,67 @@
 						<h2>More</h2>
 						<div class="box">
 							<a href="projects.html#project2" class="image"><img src="images/computerligth.jpg" class="resize" alt="" /></a>
-						
+					
 							<div class=middle>
 								<p>Working...</p>
 							</div>
 						</div>
 					</div>
-					<br>
-						
 				</div>
-			</div>
-			<br>
-			<!-- Features 2: more... -->
-			<div class="wrapper">
-				<br><h1>More about me...</h1>
-				
+			</div>	<br><br>
+	
+			<div class="wrapper_p" id="contact">
 				<div class="wrapper1">
-					<section class="container">
-						<h2>Resume</h2><br>
-						<div class="feature">
-							<a href="resume.html" class="image"><img src="images/yellowpen.jpg" class="resize2" alt="" /></a>
-							<p>xxxxxxxxx</p>
+					<div class="container">
+						<div class="box_a" id="env">
+							<div class="icon" >
+								<i class="fa fa-envelope e" aria-hidden="true"></i>
+							</div>
+							<div class="content_a">
+								<a href="xxx@gmail.com"><p>xxx@gmail.com</p></a>
+							</div>
 						</div>
-					</section>
-					<section class="container">
-						<h2>About me</h2><br>
-						<div class="feature">
-							<a href="aboutMe.html" class="image"><img src="images/cat.jpg" class="resize2" alt="" /></a>
-							<p>xxxxxxxx</p>
+					</div>
+
+					<div class="container">
+						<div class="box_a" id="phone">
+							<div class="icon" >
+								<i class="fa fa-phone" aria-hidden="true"></i>
+								
+							</div>
+							<div class="content_a">
+								<a href="xxxxxxxx"><p>xxx xxx-xxxx</p></a>
+							</div>
 						</div>
-					</section>
-				</div>>
-			</div>
-		</div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+					</div>
+					<div class="container">
+						<div class="box_a" id="linked">
+						<div class="icon" >
+								<i class="fa fa-linkedin" aria-hidden="true"></i>
+							</div>
+							<div class="content_a">
+								<a href="xxx@linkedin.com"><p>xxx@linkedin</p></a>
+							</div>
+						</div>
+					</div>
+			
+			
+					<div class="container">
+						<div class="box_a" id="git">
+							<div class="icon" >
+								<i class="fa fa-github" aria-hidden="true"></i>
+							</div>
+							<div class="content_a">
+								<a href="www.github.com"><p>xxx.github.io</p></a>
+						</div>
+					</div>
+					
+				</div>
+			</div>	
 
+		</div>	
+					
+		
 	</body>
 </html>
