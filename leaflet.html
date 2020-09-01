@@ -1,0 +1,133 @@
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Collingwood Flooding Map</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+
+ 
+  <!-- Load Leaflet from CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin="" />
+
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <!-- Load Esri Leaflet from CDN -->
+  <script src="https://unpkg.com/esri-leaflet@2.3.3/dist/esri-leaflet.js"
+    integrity="sha512-cMQ5e58BDuu1pr9BQ/eGRn6HaR6Olh0ofcHFWe5XesdCITVuSBiBZZbhCijBe5ya238f/zMMRYIMIIg1jxv4sQ=="
+    crossorigin=""></script>
+  
+  <!--Load the geolocating tool-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8">
+  </script>
+  
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+    }
+  </style>
+</head>
+
+  <!-- Add filter to feature class for change dection analysis -->
+<body>
+
+  <!-- Load Esri Leaflet Renderers plugin to use feature service symbology -->
+  <script src="https://unpkg.com/esri-leaflet-renderers@2.0.6"></script>
+
+  <style>
+    #query {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+      background: white;
+      padding: 1em;
+    }
+
+    #query select {
+      font-size: 16px;
+    }
+  </style>
+
+  <div id="map"></div>
+  <div id="query" class="leaflet-bar">
+    <label>
+      Flood Level Rise:
+      <select id="Elevation">
+        <!-- make sure to encase string values in single quotes for valid sql -->
+        <option value="Elevation < 175"> 0 Meter</option>
+        <option value="Elevation < 176"> 1 Meter</option>
+        <option value="Elevation < 177"> 2 Meter</option>
+        <option value="Elevation < 178"> 3 Meter</option>
+        <option value="Elevation < 179"> 4 Meter</option>
+      </select>
+    </label>
+  </div>
+
+  <script>
+    var map = L.map('map').setView([44.500, -80.216], 13);
+    L.esri.basemapLayer('DarkGray').addTo(map)
+    
+    //Flooding Plain from Esri                             
+    var zoning = L.esri.featureLayer({
+      url: 'https://services1.arcgis.com/DwLTn0u9VBSZvUPe/arcgis/rest/services/Collingwood_Floodplain/FeatureServer/0',
+      simplifyFactor: 0.5,
+      precision: 4
+    })
+    
+    //Street layer from Esri
+    var Street = L.esri.featureLayer({
+      url: 'https://services1.arcgis.com/DwLTn0u9VBSZvUPe/arcgis/rest/services/Collingwood_Street/FeatureServer/0',
+    })
+    // Building Layer 
+    var building = L.esri.featureLayer({
+      url: 'https://services1.arcgis.com/DwLTn0u9VBSZvUPe/arcgis/rest/services/Collingwood_Building/FeatureServer/0',
+    })
+    //  School Layer 
+    var School = L.esri.featureLayer({
+      url: 'https://services1.arcgis.com/DwLTn0u9VBSZvUPe/arcgis/rest/services/Collingwood_Schools/FeatureServer/0',
+    })
+    //Bus Route Layer
+    var BusRoute = L.esri.featureLayer({
+      url: 'https://services1.arcgis.com/DwLTn0u9VBSZvUPe/arcgis/rest/services/Collingwood_Bus_Routes/FeatureServer/0',
+
+    })
+    Street.addTo(map)
+    building.addTo(map)
+    School.addTo(map)
+    BusRoute.addTo(map)
+    
+    //Apply fiter to Flood Plain
+    var zoningDistrict = document.getElementById('Elevation');
+    zoningDistrict.addEventListener('change', function() {
+      zoning.setWhere(zoningDistrict.value).addTo(map);
+    });
+  
+    Street.bindPopup('This is a Street' ).addTo(map);
+    BusRoute.bindPopup('This is a BusRoute' ).addTo(map);
+    School.bindPopup('This is a School' ).addTo(map);
+    building.bindPopup('This is a Building' ).addTo(map);
+    
+    L.control.locate().addTo(map);
+
+  </script>
+
+</body>
+
+</html>
